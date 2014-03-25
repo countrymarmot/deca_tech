@@ -1,0 +1,4 @@
+build
+.tms*
+.vs
+*.DS_Store

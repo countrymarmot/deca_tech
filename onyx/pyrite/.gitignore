@@ -1,0 +1,6 @@
+*.pyc
+*.ropeproject
+build
+debug
+release
+dist

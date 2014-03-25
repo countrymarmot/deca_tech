@@ -1,0 +1,192 @@
+# src/INSTALL
+#
+# last modified:   02-Jan-2010  Sat  09:46
+
+These are the instructions for building this package.  Because it
+is still in alpha, the makefiles do not actually install
+anything.
+
+
+Prerequisites
+-------------
+
+First of all you need gcc 3.2.2 or later.  Older versions in the 3.x
+series might work, but have not been tested.  gcc 2.95.x will not
+work without changes to the source.
+
+Other C++ compilers that support the ISO C++ standard might work
+provided the accompanying C++ library defines either the TR1 class
+templates unordered_set and unordered_map, or class templates
+hash_set and hash_map compatible with the SGI implementation.  The
+compiler must also support the data type 'long long'.
+
+The C library should include C99 functions like snprintf() and
+headers like <inttypes.h>.
+
+In addition you will need
+  - flex 2.5.4a        lexical analyzer generator
+  - zlib 1.1.4         compression library
+  - Boost 1.31.0       general C++ library
+
+Later versions of flex and Boost should also work.  zlib 1.1.3 (which
+comes with Solaris 8) and zlib 1.2.x have known bugs.  But these bugs
+are apparently triggered only when trying to decompress invalid data.
+They are not triggered in normal operation.
+
+You can get the packages from here:
+    flex    http://lex.sourceforge.net/
+    zlib    http://www.gzip.org/zlib/
+    Boost   http://www.boost.org/
+
+For the convenience of those building with gcc on Linux or Solaris, the
+package includes the subset of Boost that it uses.  Because the subset
+needed depends on the platform, on other platforms the compiler may
+complain about missing files.  If it does, download the full Boost
+distribution and unpack it.  You do not have to compile it because this
+package uses only the headers.
+
+In addition to the compile-time requirements above, there is one
+run-time requirement for some of the programs (not the libraries):
+The operating system should support /dev/stdin and /dev/stdout.
+
+
+Prerequisites for Microsoft Windows based environments
+------------------------------------------------------
+
+This package builds on a MinGW environment (http://www.mingw.org) running
+over one of Microsoft Windows 2000 Service Pack 4 or Microsoft Windows XP
+Professional(ver. 2002) Service Pack 2 on an Intel x86 based PC.  This
+version of Anuvad may build on other Microsoft Windows versions as well.
+However, this has not been tested.
+
+The minimum requirements of the MinGW system are as follows:
+
+1. MinGW Runtime
+        package :   mingw-runtime-3.9.tar.gz
+        size    :   341 kb
+
+2. MinGW Utilities
+        package :   mingw-utils-0.3.tar.gz
+        size    :   1549 kb
+
+3. binutils
+        package :   binutils-2.15.91-20040904-1.tar.gz
+        size    :   6016 kb
+
+4. make
+        package :   mingw32-make-3.80.0-3.exe
+        size    :   1273 kb
+
+5. MSYS
+        package :   MSYS-1.0.10.exe
+        size    :   2742 kb
+
+6. Windows API
+        package :   w32api-3.6.tar.gz
+        size    :   1500 kb
+
+7. GCC
+        package :   gcc-core-3.4.2-20040916-1.tar.gz
+        size    :   3433 kb
+
+        package :   gcc-g++-3.4.2-20040916-1.tar.gz
+        size    :   4718 kb
+
+These may be downloaded in their binary form from the MinGW download site
+(http://www.mingw.org/download.shtml).
+
+These packages need to be installed according to the instructions given in the
+MinGW website.  After installing the same, the Windows environment variable
+PATH needs to be set as follows:
+
+    PATH=<MinGW_Dir>\bin;%PATH%
+
+Where, <MinGW_Dir> is the base directory where the packages have been
+installed.
+
+Additionally, the following packages need to be download from their respective
+websites and installed:
+
+8. Flex                      http://gnuwin32.sourceforge.net/packages/flex.htm
+        package :   flex-2.5.4a-1-bin.zip
+        size    :   198 kb
+
+9. Zlib source tar ball      http://zlib.net/zlib-1.2.3.tar.gz
+        package :   zlib-1.2.3.tar.gz
+        size    :   485 kb
+
+The zlib source package needs to be built on the MinGW environment installed
+earlier.  It may be noted that this should be the last one to be installed
+since it requires most of the utilities installed earlier.  The steps to
+follow are as below:
+
+    1. An unzip program like Winzip may be used to extract the tar.gz
+       archive to a working directory.
+    2. Under the directory zlib-1.2.3, the following command may be issued
+       to build the sources :
+
+        make -f win32/Makefile.gcc
+
+    3. Now the built library and the associated header files may be copied
+       to the MinGW environment with the following commands :
+
+        copy libz.a <MinGW_Dir>\lib
+        copy zlib.h <MinGW_Dir>\include
+        copy zconf.h <MinGW_Dir>\include
+
+where, <MinGW_Dir> is the directory where the MinGW environment has been
+installed.
+
+With this setup, it should be possible to compile and execute Anuvad version
+0.7 on the Windows platforms mentioned above.
+
+
+Configuration
+-------------
+
+The most severe portability problem is that the code uses the
+non-standard class templates hash_map and hash_set that come with gcc.
+These are derived from SGI's implementation of STL.
+
+If your C++ compiler is not gcc but still has SGI's hash_set and
+hash_map, edit port/hash_set.h and port/hash_map.h according to the
+instructions there.  If you don't have hash_map and hash_set or they are
+not compatible with gcc's, you're out of luck.
+
+Edit Makefile according to the instructions there to specify the
+locations of flex, zlib, and Boost.
+
+
+Building
+--------
+
+Run make in this directory.  The libraries are created in ../lib/ and
+the executables in ../bin/.  The .o files are created in the
+subdirectory of ../obj/ corresponding to the source subdirectory.
+
+These are the programs created in bin/:
+
+ascii2gds       convert ASCII version of GDSII back to GDSII
+ascii2oasis     convert ASCII version of OASIS back to OASIS
+gds-cells       list cells (structures) in GDSII file
+gds-copy        test GdsParser and GdsCreator classes by copying GDSII file
+gds-dot         generate dot description of cell references in GDSII file
+gds-recstats    print record statistics for GDSII files
+gds2ascii       convert GDSII file to ASCII
+gds2oasis       convert GDSII to OASIS
+oasis-print     print logical contents of OASIS file
+oasis-validate  validates OASIS files that have a validation signature
+oasis2ascii     convert OASIS file to ASCII
+
+
+Testing
+-------
+
+Run each program in bin/ without arguments for a brief usage message.
+You can use the sample files gdsii/sample.ascgds, oasis/sample.ascoas,
+and conv/test.ascgds for cursory testing.
+
+Read conv/ConversionNotes before running gds2oasis.  If you convert
+the file gdsii/sample.ascgds to GDSII, do not try to convert the
+result to OASIS.  You will get an "integer overflow" error message
+if you do.

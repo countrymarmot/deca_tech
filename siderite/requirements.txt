@@ -1,0 +1,2 @@
+pip==1.4.1
+git+ssh://git@github.com/Deca-Technologies/painite.git#egg=painite-0.2.2

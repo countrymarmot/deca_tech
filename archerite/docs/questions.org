@@ -1,0 +1,26 @@
+Questions about archerite
+
+* Shound configuration remain per module or more centralized?
+
+There are ups and downs to both. Central makes it simple to look at
+and change configuration for the whole project.
+
+Module based work up to the point that it gets some complicated that
+there are circular references or configuration in odd places.
+
+* Why doesn't redis use a connection pool and other performance and stability improvements?
+ 
+There are some minor changes that can be made to redis that could have
+drastic performance and stability improvements. These should be
+investigated and applied.
+
+* The design cache needs workflow improvements.
+
+I believe there are situations where the design cache could fall out
+of synx or otherwise break in a way that could be difficult to recover
+from.
+
+For instance if the file is already in the cache meta design file list
+and not in the directory there is no way to fetch it. Another example
+is if the files have different data there is no way to know and update
+the file.

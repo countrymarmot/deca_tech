@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CreateSubDirs</class>
+ <widget class="QDialog" name="CreateSubDirs">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>609</width>
+    <height>226</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>609</width>
+    <height>226</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>609</width>
+    <height>226</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Create Sub-Directories</string>
+  </property>
+  <widget class="QLineEdit" name="txtPLM1">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>30</y>
+     <width>131</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>101</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>PLM#_REV</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="txtDev1">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>30</y>
+     <width>141</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>10</y>
+     <width>101</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Device Name</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="cbTech1">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>20</y>
+     <width>151</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="currentIndex">
+    <number>1</number>
+   </property>
+   <item>
+    <property name="text">
+     <string>3-Series</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>4-Series</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>BOP</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>M-Series-3-Layer</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>M-Series-4-Layer</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>M-Series-5-Layer</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QComboBox" name="cbDraw1">
+   <property name="geometry">
+    <rect>
+     <x>450</x>
+     <y>20</y>
+     <width>151</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>Unit Drawing</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Wafer Drawing</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Stencil Drawing</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLineEdit" name="txtPLM2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>90</y>
+     <width>131</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>70</y>
+     <width>101</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Device Name</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="cbTech2">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>80</y>
+     <width>151</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="currentIndex">
+    <number>1</number>
+   </property>
+   <item>
+    <property name="text">
+     <string>3-Series</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>4-Series</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>BOP</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>M-Series-3-Layer</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>M-Series-4-Layer</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>M-Series-5-Layer</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLineEdit" name="txtDev2">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>90</y>
+     <width>141</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="cbDraw2">
+   <property name="geometry">
+    <rect>
+     <x>450</x>
+     <y>80</y>
+     <width>151</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="currentIndex">
+    <number>1</number>
+   </property>
+   <item>
+    <property name="text">
+     <string>Unit Drawing</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Wafer Drawing</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Stencil Drawing</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>70</y>
+     <width>101</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>PLM#_REV</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="txtPLM3">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>150</y>
+     <width>131</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>130</y>
+     <width>101</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Device Name</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="cbTech3">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>140</y>
+     <width>151</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="currentIndex">
+    <number>1</number>
+   </property>
+   <item>
+    <property name="text">
+     <string>3-Series</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>4-Series</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>BOP</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>M-Series-3-Layer</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>M-Series-4-Layer</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>M-Series-5-Layer</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLineEdit" name="txtDev3">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>150</y>
+     <width>141</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="cbDraw3">
+   <property name="geometry">
+    <rect>
+     <x>450</x>
+     <y>140</y>
+     <width>151</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="currentIndex">
+    <number>2</number>
+   </property>
+   <item>
+    <property name="text">
+     <string>Unit Drawing</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Wafer Drawing</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Stencil Drawing</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLabel" name="label_6">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>130</y>
+     <width>101</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>PLM#_REV</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnCreate">
+   <property name="geometry">
+    <rect>
+     <x>490</x>
+     <y>190</y>
+     <width>114</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Create</string>
+   </property>
+   <property name="default">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnCancel">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>190</y>
+     <width>114</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Cancel</string>
+   </property>
+  </widget>
+ </widget>
+ <tabstops>
+  <tabstop>txtPLM1</tabstop>
+  <tabstop>txtDev1</tabstop>
+  <tabstop>cbTech1</tabstop>
+  <tabstop>cbDraw1</tabstop>
+  <tabstop>txtPLM2</tabstop>
+  <tabstop>txtDev2</tabstop>
+  <tabstop>cbTech2</tabstop>
+  <tabstop>cbDraw2</tabstop>
+  <tabstop>txtPLM3</tabstop>
+  <tabstop>txtDev3</tabstop>
+  <tabstop>cbTech3</tabstop>
+  <tabstop>cbDraw3</tabstop>
+  <tabstop>btnCreate</tabstop>
+  <tabstop>btnCancel</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,0 +1,245 @@
+img.navbar-logo
+{
+    margin-top: -10px;
+    margin-bottom: -10px;
+    margin-right: 10px;
+    width: 50px;
+}
+
+span.beta
+{
+    margin-left: 20px;
+    color: #98cb67;
+}
+
+div.navbar-header
+{
+    margin-right: 20px;
+}
+
+ul.navbar-right
+{
+    padding-right: 20px;
+}
+
+job
+{
+    padding: 0;
+}
+
+job job-header
+{
+    display: inline-block;
+    padding: 0;
+    border-radius: 7px 7px 0px 0px;
+    background-color: #555555;
+    height: 32px;
+    cursor: pointer;
+}
+
+job job-header job-id
+{
+    display: inline-block;
+    margin-left: -15px;
+    padding: 2px 10px 2px 8px;
+    border-radius: 7px 0px 0px 0px;
+    background-color: #222222;
+    color: #EEEEEE;
+    font-size: 1.4em;
+    width: 100px;
+    height: 32px;
+}
+
+job job-header job-status
+{
+    display: inline-block;
+    padding: 2px 10px 2px 8px;
+    background-color: #222222;
+    color: #DFF0D8;
+    margin-left: -4px;
+    font-size: 1.4em;
+    width: 130px;
+    height: 32px;
+    border-radius: 0px 7px 7px 0px;
+}
+
+job job-header job-design
+{
+    display: inline-block;
+    margin-left: 15px;
+    padding: 2px 10px 2px 8px;
+    color: #EEEEEE;
+    font-size: 1.4em;
+    height: 30px;
+}
+
+job job-header job-panel
+{
+    display: inline-block;
+    margin-left: 10px;
+    padding: 2px 10px 2px 8px;
+    color: #EEEEEE;
+    font-size: 1.4em;
+    height: 30px;
+}
+
+job job-body job-error
+{
+    visibility: hidden;
+    display: none;
+}
+
+job.running job-header job-status
+{
+    color: #DFF0D8;
+}
+
+job.complete job-header job-status
+{
+    color: #D9EDF7;
+}
+
+job.launched job-header job-status
+{
+    color: #FCF8E3;
+}
+
+job.queued job-header job-status
+{
+    color: #FCF8E3;
+}
+
+job.error job-header job-status
+{
+    color: #f2dede;
+}
+
+job.error job-body
+{
+    background-color: #f2dede;
+}
+
+job.launched job-body
+{
+    background-color: #FCF8E3;
+}
+
+job.queued job-body
+{
+    background-color: #FCF8E3;
+}
+
+job.complete job-body
+{
+    background-color: #D9EDF7;
+}
+
+job.error job-body job-error
+{
+    margin-top: 10px;
+    display: inline-block;
+    visibility: visible;
+}
+
+job.error job-body job-details-right
+{
+    visibility: hidden;
+}
+
+job.launched job-body job-details-right
+{
+    visibility: hidden;
+}
+
+job.collapsed job-header
+{
+    border-radius: 7px;
+}
+
+job.collapsed job-header job-id
+{
+    border-radius: 7px;
+}
+
+job.collapsed job-body
+{
+    visibility: hidden;
+    height: 0px;
+    margin-bottom: 15px;
+}
+
+job.collapsed job-body job-error
+{
+    visibility: hidden;
+    display: none;
+}
+
+job job-body
+{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-bottom: 30px;
+    display: inline-block;
+    background-color: #DFF0D8;
+    border-radius: 0px 0px 7px 7px;
+}
+
+job job-body job-details
+{
+    float: left;
+    display: inline-block;
+    width: 400px;
+    min-height: 105px;
+}
+
+job job-body job-details table tr th
+{
+    padding-right: 4px;
+    width: 130px;
+    text-align: right;
+}
+
+job job-body job-details-right
+{
+    display: inline-block;
+    width 300px;
+    min-height: 105px;
+}
+
+job job-body job-details-right job-progress table.progress-header td
+{
+    width: 250px;
+    text-align: right
+}
+
+job job-body job-details-right job-progress table.results
+{
+    margin-top: 10px;
+}
+
+job job-body job-details-right job-progress table.results td
+{
+    padding-left: 4px;
+}
+
+job job-body job-details-right progress
+{
+    border: 1px solid #222222;
+    height: 32px;
+    width: 500px;
+}
+
+job job-body job-details-right progress[value]::-webkit-progress-value
+{
+    background-color: #222222;
+}
+
+job job-body job-details-right progress::-moz-progress-bar
+{
+    background-color: #222222; 
+}
+
+job job-body job-details-right progress[value]::-webkit-progress-bar
+{
+    background-color: #dddddd;
+}

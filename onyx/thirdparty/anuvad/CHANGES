@@ -1,0 +1,242 @@
+# CHANGES
+#
+# last modified:   12-Jun-2010  Sat  06:25
+
+
+Changes from 0.10 to 0.11
+
+  - Fixed bug OasisParser: The parser options wantText and
+    wantExtensions were not handled correctly.  The modal variables
+    related to TEXT and XGEOMETRY records must be set even if the
+    records are not passed up to the application.
+
+
+Changes from 0.9 to 0.10
+
+  - All .o files are now placed directly in obj/ rather than in
+    a subdirectory.  The subdirectory name is now a prefix that
+    makes the object name unique.  This allows all objects to be
+    collected in a single archive.
+
+  - port/hash_map.h and port/hash_set.h have been replaced by
+    port/hash-table.h.  This file can use the TR1 class templates
+    unordered_map and unordered_set, which are available with
+    recent versions of gcc.
+
+  - GdsBuilder and OasisBuilder have a new data member, 'next',
+    which can be used to chain builders in a pipeline.
+
+  - The Oasis library can now handle files larger than 4 GiB even
+    with a 32-bit executable.  See the section 'Limits on OASIS
+    file sizes' in oasis/DesignNotes.
+
+  - OasisParser now has several options.  Some options make it less
+    strict about conforming to the spec.  Other options make it
+    ignore some kinds of records; this can speed up parsing.
+
+  - There is a new utility, oasis-validate.  This validates the
+    file by checking its CRC or checksum.
+
+  - In oasis-print and oasis2ascii, the -c option has been deleted.
+    This checked the validation.  The option has been superseded
+    by oasis-validate.
+
+  - oasis-print has several more options.  These correspond to the
+    new OasisParser options.  Its -s option has been renamed -c.
+
+  - oasis2ascii now prints the implicitly-assigned reference-numbers
+    in square brackets at the end of <name> records that use
+    implicit numbering.
+
+  - Fixed bug in the OASIS parser: ParserImpl::warn() should call
+    warnHandler(), not itself.
+
+  - OasisParser now correctly implements the restriction on
+    duplicate S_CELL_OFFSET and S_BOUNDING_BOX properties (spec
+    paragraph 15.5).  Earlier it rejected some files that were
+    technically legal, though unlikely to occur.
+
+  - Class Trapezoid in oasis/trapezoid.* now stores the deltas
+    instead of the vertices.  Trapezoid::getVertex() has been
+    replaced by getVertices().
+
+  - GdsParser is more lenient when parsing PATH elements.  It
+    replaces an invalid pathtype by 0.  If a BGNEXTN or ENDEXTN
+    record appears when the pathtype is 0, 1, or 2, it changes
+    the pathtype to 4.
+
+  - GdsParser no longer verifies that the properties of an element
+    have different PROPATTRs.  Nor does it check the total length
+    of property data.
+
+
+Changes from 0.8 to 0.9
+
+  - Fixed bugs in the OASIS code:
+      - OasisScanner did not handle CBLOCKs correctly.  It assumed
+        that when a CBLOCK is fully decompressed the zlib deflater
+        will have consumed all the bytes in the CBLOCK.  This
+        assumption is not valid.
+
+      - OasisCreator did not add the S_CELL_OFFSET property to
+        CELLNAME records for external cells.
+
+      - OasisCreator did not mark the PROPSTRING table non-strict
+        when writing a string value in a PROPERTY record.
+
+      - OasisPrinter did not handle unprintable characters in
+        PROPSTRING and XNAME records.
+
+      - AsciiRecordWriter did not print the keyword 'square'
+        when the bit was set in the info-byte.
+
+
+Changes from 0.7 to 0.8
+
+  - Minor changes to the GDSII parser to accept some values that the
+    spec says are illegal.
+
+  - Fixed bugs in the OASIS code:
+      - OasisCreator did not write the layername-string in LAYERNAME
+        records.
+
+      - OasisRecordReader did not read the xgeometry-attribute field
+        in XGEOMETRY records and OasisRecordWriter did not write it.
+
+  - The OASIS parser is now stricter.  It aborts for some violations
+    of the specification that it accepted earlier:
+
+      - The OASIS version in the START record is not "1.0".
+
+      - Junk appears in the file after the END record.
+
+      - Two TEXTSTRING records have the same text-string.
+
+      - A PLACEMENT record refers to the cell containing the PLACEMENT.
+
+      - Unused bits in the info-byte of an element record are non-zero.
+
+      - A standard property appears after the wrong kind of record,
+        e.g., if S_TOP_CELL (a file property) appears after a CELL
+        record.
+
+
+Changes from 0.6 to 0.7
+
+  - Now compiles in a MinGW (http://www.mingw.org) environment for 32-bit
+    Microsoft Windows 2000 and Windows XP running on Intel x86 based PCs.
+    All previously supported operating systems continue to be supported.
+
+
+Changes from 0.5 to 0.6
+
+  - gds2oasis has a new option -D to preserve the duplicate elements.
+    By default gds2oasis deletes the duplicates.
+
+  - Limit on the number of points in BOUNDARY/PATH/NODE raised to 8191.
+    Limit on layer and datatype numbers raised to 32767.
+
+  - Bugfix:
+    The GDSII parser no longer verifies that only NULL bytes follow ENDLIB.
+    As a side effect, the locator offset for GdsBuilder::endLibrary()
+    is the offset of the byte after ENDLIB, if any. This is the logical
+    file size; it excludes any padding bytes. Earlier it included the
+    padding bytes.
+
+  - Bugfix:
+    GdsScanner::fillBuffer() uses memmove() instead of memcpy().
+
+
+Changes from 0.4 to 0.5
+
+  - Bugs are fixed in OASIS scanner in reading and writing CBLOCK records.
+
+    In Oasis scanner, the assumption that zlib's inflate() returns
+    the Z_STREAM_END when it reaches the end of the CBLOCK is removed.
+
+    The compressor now uses zlib's inflateInit2() & deflateInit2() with
+    a negative windowBits argument to disable the RFC-1950 wrappers. This
+    is explained in a footnote in the latest OASIS specification.
+
+    This change is based on feedback from Stefan Thiede, Philips
+    Semiconductors.
+
+  - CRC/checksum computation includes magic string as per the latest OASIS
+    format specification.
+
+  - Error message in boost commented out so that it compiles with gcc 4.
+
+  - Buffer enlarged in OasisScanner::formatContext() to accommodate long
+    pathnames.
+
+
+Changes from 0.3 to 0.4
+
+  - gds2oasis has a new option -p. With this option it converts the
+    single segment GDSII PATHs which are either horizontal or vertical
+    into OASIS RECTANGLEs. By default, it converts all the GDSII PATHs
+    into OASIS PATHs.
+
+    This option is added as the PATH to RECTANGLE conversion is not
+    acceptable for some applications because of change in semantics.
+
+    This change is based on feedback from Koki Kuriyama, Dai Nippon Printing.
+
+  - Bugs are fixed in OASIS scanner in reading CBLOCK records.
+
+    These bugs are reported by Frank Gennari, CommandCAD, Inc.
+
+  - GDSII parser allows zero length string in LIBNAME record.
+
+    This change is based on feedback from Stefan Thiede, Philips
+    Semiconductors.
+
+
+Changes from 0.2 to 0.3
+
+  - gds2oasis has two new options: -t (preserve text transforms) and
+    -v (verbose).
+
+    By default gds2oasis now ignores transforms on GDSII text elements.
+    Use -t to restore the earlier behaviour of putting these text
+    elements into special cells.
+
+    With -v, gds2oasis prints a progress message when it starts a new
+    cell, and each time it starts a new batch of elements.
+
+  - gds2oasis now converts (illegal) magnifications of 0.0 to 1.0
+    instead of ignoring SREFs/AREFs/TEXTs with those magnifications.
+
+    All changes are based on feedback from Stefan Thiede, Philips
+    Semiconductors.
+
+
+Changes from 0.1 to 0.2
+
+  - gds2oasis has a new option -n.  With this option it writes each
+    name record to the OASIS file before referring to it.  The default
+    (and the earlier behaviour) is to collect all name records into
+    strict-mode name tables at the end of the file.  It seems,
+    however, that Mentor Graphics' Calibre DESIGNrev cannot handle that.
+
+  - gds2oasis and the other commands that read or write GDSII files
+    can handle gzipped GDSII files.  They automatically gunzip input
+    files and gzip output files if the filename ends with '.gz'.
+    For example,
+
+        gds2oasis foo.gds.gz foo.oasis
+                reads from the gzipped GDSII file foo.gds.gz
+
+        ascii2gds foo.ascgds foo.gds.gz
+                creates a gzipped GDSII file
+
+    This feature has not been implemented for OASIS files because the
+    OASIS format already includes compression.
+
+  - gds2oasis generates slightly more compact output for two-point
+    paths that are horizontal or vertical.
+
+    All the changes above are as a result of feedback from
+    Stefan Thiede, Philips Semiconductors.
+
+  - Assorted bugfixes.  See the ErrorLog files.

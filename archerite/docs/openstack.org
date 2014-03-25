@@ -1,0 +1,47 @@
+* OpenStack Notes
+
+Install of Havana on 01/06/2014 - 01/07/2014
+
+
+* Ubuntu Cloud Archive
+
+https://wiki.ubuntu.com/ServerTeam/CloudArchive
+
+sudo add-apt-repository cloud-archive:havana
+
+sudo apt-get update
+
+
+* Only one way to auth.
+
+Either
+
+OS_SERVICE_TOKEN OS_SERVICE_ENDPOINT
+
+or
+
+OS_USERNAME OS_PASSWORD OS_TENANT_NAME OS_AUTH_URL
+
+
+* Default VM Image
+
+http://cloud-images.ubuntu.com/precise/current/
+
+Specifically:
+
+http://cloud-images.ubuntu.com/precise/current/precise-server-cloudimg-amd64-disk1.img
+
+
+* /etc/hosts configuration
+
+/etc/hosts defaults the server hostname to 127.0.1.1. This should be
+the static IP address.
+
+
+* Machine types
+
+Services - Opal, mysql, monitoring, logging (then backed up remotely)
+
+Worker - Xenotime, 
+
+Controller - Archerite, celery, redis

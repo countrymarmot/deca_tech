@@ -1,0 +1,11 @@
+<nav class="navbar navbar-inverse" role="navigation">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="/opal"><img class="navbar-logo" src="images/logo.png" />Onyx Dashboard<span class="beta">BETA</span></a>
+    </div>
+    <ul class="nav navbar-nav">
+        <li{% if body_template == "jobs.html" %} class="active"{% endif %}><a href="/opal/jobs">Jobs</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href="/opal/config">Configuration</a></li>
+    </ul>
+</nav>

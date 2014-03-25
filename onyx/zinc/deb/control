@@ -1,0 +1,8 @@
+Package: zinc
+Version: 0.1
+Section: deca
+Priority: optional
+Architecture: all
+Depends: libtbb2 (>= 4.0+r233-1), libprotobuf7 (>=2.4.1)
+Maintainer: Craig Bishop <craig.bishop@decatechnologies.com>
+Description: Onyx Adaptive Patterning engine

@@ -1,0 +1,57 @@
+
+* Current Structure
+
+archerite - all
+
+__init__.py
+contasks.py
+nodetasks.py
+shareutil.py
+api.py
+dbutil.py
+onyxcontroller.py
+celeryapp.py
+design_cache.py
+onyxutil.py
+config.py
+model.py
+redisutil.py
+
+
+
+* New Structure
+
+version.py and versions.
+
+archerite - server side orchestration
+contasks.py
+onyxcontroller.py (move to celerybeat using config)
+
+
+purpurite - common
+celeryapp.py (possibly get rid of this?)
+config.py 
+dbutil.py
+model.py
+onyxutil.py
+redisutil.py
+shareutil.py
+
+
+xenotime - worker
+design_cache.py
+nodetasks.py
+
+
+opal - web
+api.py
+static/*
+
+
+painite  - protocols
+zinc_pb2
+zinc.proto
+
+* Other
+
+Clean ubuntu install for OpenStack.

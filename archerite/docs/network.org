@@ -1,0 +1,48 @@
+* Where to start
+
+[] OpenStack doesn't work on onyx2. Probably the bridge.
+
+[Fixed] Celery intermitently connects.
+
+[] No logging or monitoring for Celery or the rest of Archerite.
+
+[] Default images
+
+* 10.78.56.201
+  build box.
+  
+  network shares. (for now: measurements, designs, panel_gds)
+
+  /home/decatech/onyx/zinc/deb/zinc.deb
+  
+* 10.78.56.202
+  onyx1
+
+  /horizon - OpenStack Horizon
+
+* 10.78.56.203
+  onyx2
+
+  Currently off.
+
+* Images
+
+All are in qcow2 format.
+
+new images
+  If creating a new image should probably use the ubuntu 12.04 image.
+
+onyx-blank
+  Is old now but it could make sense to recreate it.
+
+onyx-node
+onyx-services
+onyx-controller
+  Are also old but they are working sometimes.
+
+* admin credentials
+
+node appliction account: decatech
+
+admin account: admin
+Blue52hut

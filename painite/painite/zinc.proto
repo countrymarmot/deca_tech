@@ -1,0 +1,261 @@
+/*
+Zinc Protocols for protobuf.
+*/
+package zinc;
+
+// Design Protocols
+
+message Point
+{
+  required float x = 1;
+  required float y = 2;
+}
+
+message Rect
+{
+  required Point center = 1;
+  required float width = 2;
+  required float height = 3;
+}
+
+message Rules
+{
+  required float minGlobalSpacing = 1;
+  required Rect routeKeepIn = 2;
+}
+
+message Package
+{
+  required Rect outline = 1;
+  repeated int32 requiredDieIndices = 2;
+}
+
+message Pad
+{
+  required int32 netID = 1;
+  required Point xy = 2;
+  required float radius = 3;
+  optional int32 dieIndex = 4;
+}
+
+message Path
+{
+  required int32 netID = 1;
+  required Point xy0 = 2;
+  required Point xy1 = 3;
+  required float traceWidth = 4;
+}
+
+message Shape
+{
+  required int32 netID = 1;
+  
+  message Segment
+  {
+    required Point xy0 = 1;
+    required Point xy1 = 2;
+  }
+
+  repeated Segment segments = 2;
+}
+
+message RouteDefinition
+{
+  required int32 netID = 1;
+  required string netName = 2;
+  required Point xy0 = 3;
+  required Point xy1 = 4;
+  required bool isShifted0 = 5;
+  required bool isShifted1 = 6;
+  required int32 dieIndex0 = 7;
+  required int32 dieIndex1 = 8;
+  required float traceWidth = 9;
+  optional float minSpacing = 10;
+}
+
+message Prestratum
+{
+  required bool isShifted = 1;
+  required int32 uncompressedSize = 2;
+  required bytes gdsData = 3;
+}
+
+message GDSTemplate
+{
+  required bool hasGlobalOffset = 1;
+  required int32 uncompressedSize = 2;
+  required bytes gdsData = 3;
+}
+
+message Layer
+{
+  required int32 number = 1;
+  required string name = 2;
+  repeated Pad fixedPads = 3;
+  repeated Path fixedPaths = 4;
+  repeated Shape fixedShapes = 5;
+  repeated RouteDefinition routeDefinitions = 6;
+  repeated Prestratum fixedPrestratums = 7;
+  optional Prestratum outOfSpecPrestratum = 8;
+  optional Prestratum dummyPrestratum = 9;
+  repeated GDSTemplate gdsTemplates = 10;
+}
+
+message DieLayer
+{
+  required int32 number = 1;
+  repeated Pad dynamicPads = 2;
+  repeated Path dynamicPaths = 3;
+  repeated Shape dynamicShapes = 4;
+  repeated Prestratum fixedPrestratums = 5;
+  repeated Prestratum shiftedPrestratums = 6;
+}
+
+message Die
+{
+  required string name = 1;
+  required Rect outline = 2;
+  required bool critical = 3;
+  required bool interpolateConstraints = 4;
+
+  message ShiftConstraints
+  {
+    optional float theta = 1;
+    required float minX = 2;
+    required float maxX = 3;
+    required float minY = 4;
+    required float maxY = 5;
+    optional float minTheta = 6;
+    optional float maxTheta = 7;
+  }
+  
+  repeated ShiftConstraints shiftConstraints = 5;
+  repeated DieLayer dieLayers = 6;
+  repeated Point nominalCenters = 7;
+}
+
+message Design
+{
+  required string designNumber = 1;
+  required string designRevision = 2;
+  required Rules rules = 3;
+  required Package package = 4;
+  repeated Die unitDie = 5;
+  repeated Die referenceDie = 6;
+  repeated Layer layers = 7;
+}
+
+// Shifts protocols
+
+message DieShift
+{
+  required string name = 1;
+  required Point nominalXY = 2;
+  required Point shift = 3;
+  required float theta = 4;
+}
+
+message Unit
+{
+  required int32 number = 1;
+  required Point center = 2;
+  repeated DieShift die = 3;
+  required bool inSpec = 4;
+}
+
+message Shifts
+{
+  required string designNumber = 1;
+  required string designRevision = 2;
+  required string panelID = 3;
+  repeated Unit units = 4;
+  repeated Unit referenceUnits = 5;
+  required Point globalOffset = 6;
+}
+
+// WorkItem protocols
+
+message Range
+{
+  required int32 start = 1;
+  required int32 end = 2;
+}
+
+message RoutingWorkItem
+{
+  required string panelID = 1;
+  required Design design = 2;
+  required Shifts shifts = 3;
+  required Range workRange = 4;
+}
+
+message Route
+{
+  required int32 routeIndex = 1;
+  repeated Point points = 2;
+}
+
+message RoutedLayer
+{
+  required int32 layerNumber = 1;
+  repeated Route routes = 2;
+}
+
+message RoutedUnit
+{
+  required Unit unit = 1;
+  repeated RoutedLayer routedLayers = 2;
+  required bool routingGood = 3;
+}
+
+message RoutingWorkResults
+{
+  required string panelID = 1;
+  required Range workRange = 2;
+  repeated RoutedUnit routedUnits = 3;
+}
+
+message CreateGDSWorkItem
+{
+  required string panelID = 1;
+  required Design design = 2;
+  required Shifts shifts = 3;
+  repeated RoutedUnit routedUnits = 4;
+  optional int32 debugLayer = 5;
+}
+
+message File
+{
+  required string fileName = 1;
+  required int32 uncompressedSize = 2;
+  required bytes data = 3;
+}
+
+message CreateGDSWorkResults
+{
+  required string panelID = 1;
+  repeated File files = 2;
+}
+
+enum WorkType
+{
+  UNKNOWN = 0;
+  ROUTING = 1;
+  CREATE_GDS = 2;
+}
+
+message WorkItem
+{
+  required WorkType workType = 1;
+  optional RoutingWorkItem routingWorkItem = 2;
+  optional CreateGDSWorkItem createGDSWorkItem = 3;
+}
+
+message WorkResult
+{
+  required bool success = 1;
+  optional string errorMessage = 2;
+  optional WorkType workType = 3;
+  optional RoutingWorkResults routingWorkResults = 4;
+  optional CreateGDSWorkResults createGDSWorkResults = 5;
+}

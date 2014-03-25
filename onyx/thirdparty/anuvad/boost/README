@@ -1,0 +1,21 @@
+This directory contains the files from Boost version 1.31.0 that
+we need.  src/boost is a symlink to this directory.  If you
+already have Boost 1.31.0 installed, you can delete this
+directory and replace that symlink by one to wherever you have
+installed the header files.
+
+
+From the Boost README:
+-----------------------------------------------------------------
+Unless otherwise specified, all Boost software and documentation
+is subject to the Boost Software License Version 1.0. See the
+accompanying file LICENSE_1_0.txt.  A copy of the license is also
+available at
+
+    http://www.boost.org/LICENSE_1_0.txt.
+
+For the most current version of Boost libraries and documentation,
+see:
+
+   http://www.boost.org
+-----------------------------------------------------------------

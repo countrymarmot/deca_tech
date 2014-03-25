@@ -1,0 +1,9 @@
+After generating the bdist_esky packaged files for Windows or MacOSX, they are placed on the download server for availability.  Sometimes these files can be quite large so it is recommended to create a diff patch.
+
+The following command creates a patch file:
+python -m esky.patch diff -Z <first-zip-file> <second-zip-file> <patch-file>
+
+For example:
+python -m esky.patch diff -Z Pyrite-0.1.15.win32.zip Pyrite-0.1.16.win32.zip Pyrite-0.1.16.win32.from-0.1.15
+
+This will save the newly generated patch file in the same directory as the command is run.  It is easiest to run the patch generation in the downloads folder on the update server.

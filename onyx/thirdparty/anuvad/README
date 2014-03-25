@@ -1,0 +1,115 @@
+# README
+#
+# last modified:   02-Jan-2010  Sat  11:03
+
+This is Anuvad, release 0.10.
+
+This package provides C++ libraries and programs for working with GDSII
+Stream Format and OASIS.  These are file formats for describing
+IC layouts.
+
+It includes C++ classes for
+  - reading and writing GDSII and OASIS files
+  - conversion between GDSII and an ASCII equivalent
+  - conversion between OASIS and an ASCII equivalent
+  - conversion from GDSII to OASIS.
+It also includes some simple command-line programs to exercise the
+code.
+
+Descriptions of GDSII are available on the web at several places;
+search for "gdsii stream format".  The OASIS specification is
+available from www.semi.org for USD 100.
+
+
+Website and Mailing List
+------------------------
+
+You can get the latest version of Anuvad from
+    http://www.softjin.com/html/anuvad.htm
+You will have to register first, if you have not already done so.
+
+Note that Anuvad is not open source.  Although the source is available
+free of charge, you are allowed to distribute only binaries, not source.
+
+There is a mailing list, anuvad-dev@softjin.com, for those interested in
+the package.  To subscribe, send mail to anuvad-dev-request@softjin.com
+with the single word
+    subscribe
+in the body of the message.
+
+
+Platforms
+---------
+
+Of late Anuvad has been tested only on Red Hat Enterprise Linux 4
+with gcc 3.4.x and RHEL 5 with gcc 4.x.  Earlier versions were
+tested on these platforms:
+
+  - Red Hat Linux 9 with gcc 3.2.2 and gcc 3.4.1
+  - Solaris 8 with gcc 3.2.2
+  - Microsoft Windows 2000 (Service Pack 4) with MinGW's gcc 3.4.2
+    (http://www.mingw.org)
+  - Microsoft Windows XP Professional (Service Pack 2) with MinGW's gcc 3.4.2
+    (http://www.mingw.org)
+    Other Microsoft Windows platforms supported by MinGW may also build this
+    source.  However, this has not been tested.
+
+
+Building
+--------
+
+See src/INSTALL for prerequisites and build instructions.  If you are
+impatient and you have a Linux system, try this first:
+
+    cd src; make
+
+If it succeeds you will find the libraries in lib/ and the executables
+in bin/.  Each executable prints a brief usage message if it is invoked
+without arguments.
+
+
+Documentation
+-------------
+
+There is no formal API documentation, but you should find the source
+code easy enough to read.  Each source directory contains a file
+Overview that briefly describes the files in the directory and how they
+are related.  Read these Overview files, beginning with src/Overview,
+before you read the sources.
+
+If you only want to understand how to use the libraries to read and
+write GDSII and OASIS files, read gdsii/Tutorial and oasis/Tutorial.
+
+
+Feedback
+--------
+
+Please send questions, comments, bug reports, and requests for
+enhancements to anuvad-dev@softjin.com.  For general enquiries, see
+    http://www.softjin.com/
+for other ways of contacting us.
+
+
+Legal
+-----
+
+The files under boost/ are copyright the Boost developers and
+distributed under the Boost License; see boost/LICENSE_1_0.txt.
+Individual files may override that license.
+
+The files under src/ are copyright SoftJin Technologies Private Ltd.
+and are distributed under the SoftJin Source License; see src/LICENSE.
+The company was earlier called SoftJin Infotech Private Ltd; most
+files still use that name in the copyright notice.
+
+OASIS is a registered trademark of Semiconductor Equipment and Materials
+International.
+
+Solaris is a (possibly registered) trademark of Sun Microsystems, Inc.
+
+Red Hat is a registered trademark of Red Hat, Inc.
+
+Linux is a registered trademark of Linus Torvalds.
+
+Windows 2000 and Windows XP are registered trademarks of Microsoft
+Corporation.

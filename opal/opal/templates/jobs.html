@@ -1,0 +1,63 @@
+<jobs id="job-list">
+</jobs>
+<script type="text/template" id="job-template">
+<job-header class="col-md-12">
+    <job-id><%= job.id %></job-id>
+    <job-status><%= job.status %></job-status>
+    <job-design><%= job.design_number + job.design_rev %></job-design>
+    <job-panel><%= job.panel_id %></job-panel>
+</job-header>
+<job-body class="col-md-12">
+    <job-details>
+        <table>
+            <tr>
+                <th>Panel Drawing #:</th>
+                <td><%= job.design_number + job.design_rev %></td>
+            </tr>
+            <tr>
+                <th>Panel ID:</th>
+                <td><%= job.panel_id %></td>
+            </tr>
+            <tr>
+                <th>Launched:</th>
+                <td><%= job.launched_time %></td>
+            </tr>
+            <tr>
+                <th>Started:</th>
+                <td><%= job.started_time %></td>
+            </tr>
+            <tr>
+                <th>Completed:</th>
+                <td><%= job.finished_time %></td>
+            </tr>
+        </table>
+    </job-details>
+    <job-details-right>
+        <job-progress>
+            <table class="progress-header">
+                <tr>
+                    <th><%= job.work_items_done %> of <%= job.work_items %> work items complete</th>
+                    <td><%= job.sub_status %></td>
+                </tr>
+            </table>
+            <progress max="<%= job.work_items %>" value="<%= job.work_items_done %>"></progress><br>
+            <% if (job.status === "COMPLETE") { %>
+            <table class="results">
+                <tr>
+                    <th>Yield:</th>
+                    <td><%= job.final_yield %></td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td><%= job.units_good %> out of <%= job.unit_count %></td>
+                </tr>
+            </table>
+            <% } %>
+        </job-progress>
+    </job-details-right>
+    <job-error>
+        <h4>Error Details</h4>
+    </job-error>
+</job-body>
+</script>
+<script src="js/jobs.js"></script>

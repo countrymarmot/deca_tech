@@ -1,0 +1,30 @@
+* archerite install
+
+** Daemonization
+*** celery
+*** supervisord archerite
+** proxy flower
+** proxy opal correctly
+
+
+* Configure new services at new locations.
+** MySQL
+** redis
+   Installing directly from source eliminated weird errors.
+** opal
+   already moved.
+
+
+* Monitoring
+
+** flower
+
+** riemann
+
+   [X] services
+   * [ NOT RUNNING NOW. Needs supervisord (or however they daemonizie it, etc)]
+   * /opt/riemann-0.2.4 
+   * apt-get install ruby1.9.1
+   * gem install riemann-client riemann-tools riemann-dash
+
+Add events to log redis events.
